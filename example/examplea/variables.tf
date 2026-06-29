@@ -42,4 +42,9 @@ variable "corp_ip_ranges" {
   type        = list(string)
   description = "Corporate IP ranges to allow."
   default     = []
+
+  validation {
+    condition     = alltrue([for cidr in var.corp_ip_ranges : length(trimspace(cidr)) > 0])
+    error_message = "Each corporate IP range must be a non-empty string."
+  }
 }
