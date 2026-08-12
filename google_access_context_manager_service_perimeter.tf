@@ -25,8 +25,4 @@ resource "google_access_context_manager_service_perimeter" "default" {
     }
   }
 
-  depends_on = [
-    google_access_context_manager_access_level.ip,
-    google_access_context_manager_access_level.identities,
-  ]
 }

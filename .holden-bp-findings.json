@@ -1,0 +1,41 @@
+{
+  "scan_date": "2026-08-12T00:00:00Z",
+  "scan_path": ".",
+  "findings": [
+    {
+      "id": "HOLDEN_BP_001",
+      "status": "fixed",
+      "first_seen": "2026-08-12",
+      "last_seen": "2026-08-12",
+      "principle": "maintainability",
+      "severity": "INFO",
+      "confidence": "high",
+      "title": "module block not gofmt-aligned (terraform fmt drift)",
+      "file": "example/examplea/module.vpc-sc-perimeter.tf",
+      "line": 4,
+      "resource": "module.vpc_sc_perimeter",
+      "explanation": "The argument `=` signs were not aligned per terraform fmt, leaving the block visibly out of sync with the rest of the repo's formatting.",
+      "remediation": "Run terraform fmt (or apply the aligned version).",
+      "fixable": true,
+      "fix": "source                 = \"../../\"\n  access_policy_name     = var.access_policy_name\n  perimeter_name         = var.perimeter_name\n  project_numbers        = var.project_numbers\n  restricted_services    = var.restricted_services\n  access_level_ip_ranges = var.corp_ip_ranges"
+    },
+    {
+      "id": "HOLDEN_BP_002",
+      "status": "fixed",
+      "first_seen": "2026-08-12",
+      "last_seen": "2026-08-12",
+      "principle": "maintainability",
+      "severity": "INFO",
+      "confidence": "high",
+      "title": "Output description has a typo and the block is not gofmt-aligned",
+      "file": "example/examplea/outputs.tf",
+      "line": 3,
+      "resource": "output.perimeter_name",
+      "explanation": "description = \"Permiter name\" misspells \"Perimeter\", and the `=` signs were not aligned per terraform fmt.",
+      "remediation": "Fix the typo and run terraform fmt.",
+      "fixable": true,
+      "fix": "value       = module.vpc_sc_perimeter.perimeter_name\n  description = \"Perimeter name\""
+    }
+  ],
+  "suggested_policies": []
+}
